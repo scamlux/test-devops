@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: agri-platform
+spec:
+  source:
+    repoURL: https://github.com/<ORG>/gitops
+    targetRevision: main
+    path: apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: agri
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
